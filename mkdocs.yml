@@ -6,10 +6,9 @@ site_description: Everything you need to know about Fetch.AI.
 site_author: katharine.murphy@fetch.ai
 
 theme:
-  name: 'material'
-  logo:
-    icon: code
+  name: null
   custom_dir: custom_theme/
+  logo: "./assets/images/logo.png"
   favicon: '/assets/images/favicon.ico'
   feature:
     tabs: true  
@@ -186,6 +185,3 @@ extra:
 markdown_extensions:
   - pymdownx.superfences
   - admonition
-
-extra_css:
-    - css/my-styles.css

@@ -1,0 +1,36 @@
+{% import "partials/language.html" as lang with context %}
+
+{% set toc_ = page.toc %}
+{# TODO: if toc_ | first is defined and "\x3ch1 id=" in page.content %}
+  {% set toc_ = (toc_ | first).children %}
+{% endif #}
+
+{% if toc_ | first is defined %}
+  <h2>{{ lang.t("toc.title") }}</h2>
+  <ul>
+    {% for toc_item in toc_ %}
+      {% include "partials/toc-item.html" %}
+    {% endfor %}
+    {% if page.meta.source and page.meta.source | length > 0 %}
+      <li>
+        <a href="#__source" class="active">
+          {{ lang.t("meta.source") }}
+        </a>
+      </li>
+    {% endif %}
+    {% set disqus = config.extra.disqus %}
+    {% if page and page.meta and page.meta.disqus is string %}
+      {% set disqus = page.meta.disqus %}
+    {% endif %}
+    {% if not page.is_homepage and disqus %}
+      <li>
+        <a href="#__comments" class="active">
+          {{ lang.t("meta.comments") }}
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+</nav>

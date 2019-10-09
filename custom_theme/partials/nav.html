@@ -1,0 +1,34 @@
+{% for nav_item in nav %}<div id="accordion">
+  <div class="card">
+   {% set path = "nav-" + loop.index | string %}
+   {% set level = 1 %}    
+   {% set expanded = "false" %}
+   {% set show_menu = "" %}   
+   {% if nav_item == page or nav_item.active %}
+      {% set expanded = "true" %}
+      {% set show_menu = "show" %}         
+   {% endif %}
+   <div class="card-header" id="headingOne">
+    <h5 class="mb-0">
+      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne{{ loop.index0 }}" aria-expanded="{{expanded}}" aria-controls="collapseOne{{ loop.index0 }}">
+        {{ nav_item.title }} <i class="fa fa-caret-down"></i>
+      </button>
+    </h5>
+   </div>
+
+   {% if nav_item.children and nav_item.children | length > 0 %}
+   <div id="collapseOne{{ loop.index0 }}" class="collapse {{show_menu}}" aria-labelledby="headingOne" data-parent="#accordion">
+    <div class="card-body">
+      {% for child in nav_item.children %}
+      {% if child.children and child.children | length > 0%}
+      <p><a href="{{ (child.children | first).url | url }}">{{child.title}}</a></p>
+      {% else %}
+      <p><a href="{{ child.url | url }}">{{child.title}}</a></p>      
+      {% endif %}
+      {% endfor %}
+    </div>
+   </div>
+   {% endif %}
+  </div>
+</div>
+{% endfor %}

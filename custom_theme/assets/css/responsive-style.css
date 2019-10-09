@@ -1,0 +1,158 @@
+.visible-xs{
+	display: none !important;
+}
+.hidden-xs{
+	display: block !important;
+}
+@media(max-width: 1300px){
+	.navbar-light .navbar-nav .nav-link {
+    font-size: .9rem;
+        padding: 0 .9rem;
+}
+.nav-search {
+    width: 20%;
+}
+.nav-search i {
+    position: absolute;
+    left: .8rem;
+    font-size: 1.2rem;
+    top: .9rem;
+    cursor: pointer;
+}
+.header .logo {
+    width: 10rem;
+    float: left;
+}
+.header p {
+    float: right;
+    color: #5887DA;
+    font-size: 1.1rem;
+    padding-top: .2rem;
+}
+.navbar {
+    padding: 0;
+    padding-bottom: 1rem;
+}
+.left-sidemenu, .right-sidemenu {
+    width: 15rem;
+    position: fixed;
+    height: calc(100vh - 8.6rem);
+    top: 8.6rem;
+    padding:1rem;
+}
+.main-content {
+    padding: 2rem 17rem;
+    margin-top: 6.41rem;
+}
+.left-sidemenu h1 {
+    font-size: 1rem;
+}
+.left-sidemenu .card-header button {
+    font-size: .9rem;
+}
+.left-sidemenu .card-header button i {
+    font-size: 1rem;
+}
+.left-sidemenu .collapse p a, .left-sidemenu .collapse.show p a,
+.left-sidemenu .card-body p a {
+    color: #000;
+    font-size: .8rem;
+}
+.right-sidemenu h1 {
+    font-size: 1rem;
+}
+.right-sidemenu h2 {
+    font-size: 1rem;
+}
+.right-sidemenu ul li a {
+    font-size: .9rem;
+    padding: .4rem 1rem;
+}
+.main-content h1 {
+    font-size: 1.8rem;
+}
+.main-content p {
+    font-size: 1rem;
+    margin-bottom: .7rem;
+}
+.main-content p span {
+    font-size: .9rem;
+}
+.main-content h2 {
+    font-size: 1.4rem;
+}
+.main-content h6 {
+    font-size: 1.2rem;
+}
+}
+@media (max-width: 1024px){
+	.main-header{
+		z-index: 99999
+	}
+	.left-sidemenu, .right-sidemenu {
+    width: 15rem;
+    position: fixed;
+    height: calc(100vh - 7.6rem);
+    top: 7.6rem;
+    padding: 1rem;
+}
+.navbar-light .navbar-toggler {
+    color: rgba(0, 0, 0, 0.5);
+    border-color: #fff;
+}
+.navbar-light .navbar-nav .nav-link:after{
+	display: none;
+}
+.navbar-light .navbar-nav .nav-link{
+	padding: .5rem 0;
+	margin-bottom: .5rem;
+	font-size: 1.2rem;
+}
+.nav-search{
+	width: 100%;
+}
+.header, .menu {
+    background-color: #1E2844;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+}
+@media(max-width: 767px){
+	.visible-xs{
+		display: block !important;
+	}
+	.hidden-xs{
+		display: none !important;
+	}
+	.right-sidemenu{
+		display: none;
+	}
+	.main-content{
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+	.left-sidemenu, .right-sidemenu {
+    width: 100%;
+    position: relative;
+    left: inherit;
+    height: inherit;
+    margin:0;
+}
+.header, .menu {
+    background-color: #1E2844;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    float: left;
+    width: 100%;
+    margin-top: -1px;
+}
+.header p{
+	display: none;
+}
+.left-sidemenu .collapse p a, .left-sidemenu .collapse.show p a, .left-sidemenu .card-body p a {
+    color: #000;
+    font-size: .9rem;
+}
+}

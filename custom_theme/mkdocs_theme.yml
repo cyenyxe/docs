@@ -1,0 +1,20 @@
+language: en
+direction:
+feature:
+  tabs: false
+
+palette:
+  primary:
+  accent:
+
+font:
+  text: Roboto
+  code: Roboto Mono
+
+favicon: assets/images/favicon.png
+logo: "./assets/images/logo.png"
+include_search_page: false
+search_index_only: true
+
+static_templates:
+  - 404.html

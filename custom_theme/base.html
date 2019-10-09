@@ -1,0 +1,122 @@
+{% import "partials/language.html" as lang with context %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% block site_meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% if page and page.meta and page.meta.description %}
+      <meta name="description" content="{{ page.meta.description }}">
+    {% elif config.site_description %}
+      <meta name="description" content="{{ config.site_description }}">
+    {% endif %}
+    {% if page and page.meta and page.meta.redirect %}
+      <script>var anchor=window.location.hash.substr(1);location.href="{{ page.meta.redirect }}"+(anchor?"#"+anchor:"")</script>
+      <meta http-equiv="refresh" content="0; url={{ page.meta.redirect }}">
+      <meta name="robots" content="noindex">
+      <link rel="canonical" href="{{ page.meta.redirect }}">
+    {% elif page.canonical_url %}
+      <link rel="canonical" href="{{ page.canonical_url }}">
+    {% endif %}
+    {% if page and page.meta and page.meta.author %}
+      <meta name="author" content="{{ page.meta.author | first }}">
+    {% elif config.site_author %}
+      <meta name="author" content="{{ config.site_author }}">
+    {% endif %}
+    {% for key in [
+      "clipboard.copy",
+      "clipboard.copied",
+      "search.language",
+      "search.pipeline.stopwords",
+      "search.pipeline.trimmer",
+      "search.result.none",
+      "search.result.one",
+      "search.result.other",
+      "search.tokenizer"
+    ] %}
+      <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
+    {% endfor %}
+    <link rel="shortcut icon" href="{{ config.theme.favicon | url }}">
+    <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-4.4.3">
+  {% endblock %}	
+
+  {% if config.extra.manifest %}
+    <link rel="manifest" href="{{ config.extra.manifest | url }}">
+  {% endif %}
+  {% for path in config["extra_css"] %}
+    <link rel="stylesheet" href="{{ path | url }}">
+  {% endfor %}
+  {% block analytics %}
+    {% if config.google_analytics %}
+      {% include "partials/integrations/analytics.html" %}
+    {% endif %}
+  {% endblock %}
+  {% block extrahead %}{% endblock %}
+
+	<link rel="stylesheet" type="text/css" href="{{ 'assets/css/font-awesome.css' | url }}">
+	<link rel="stylesheet" type="text/css" href="{{ 'assets/css/bootstrap-4.css' | url }}">
+	<link rel="stylesheet" type="text/css" href="{{ 'assets/css/style.css' | url }}">
+	<link rel="stylesheet" type="text/css" href="{{ 'assets/css/responsive-style.css' | url }}">
+	<link rel="stylesheet" type="text/css" href="{{ 'assets/css/theme_extra.css' | url }}">	
+</head>
+<body>
+
+<div class="wrapper">
+	{% block header %}
+		{% include "partials/header.html" %}
+	{% endblock %}
+
+	<div class="left-sidemenu">
+		<h1>Etch Language</h1> <!-- TODO: Title -->		
+    {% block site_nav %}
+      {% if nav %}
+    		<div id="accordion">
+  	      {% include "partials/nav.html" %}
+	      </div>
+      {% endif %}
+    {% endblock %}	
+	</div>
+  {% if page.toc and page.toc | first is defined %}
+	<div class="right-sidemenu">
+		<h1>Table of contents</h1>
+		{% include "partials/toc.html" %}
+	</div>
+  {% endif %}		
+	<div class="main-content">
+		{% block content %}
+      {# if page.edit_url %}
+	      TODO:
+        <a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}" class="md-icon md-content__icon">&#xE3C9;</a>
+      {% endif #}
+      {% if not "\x3ch1" in page.content %}
+        <h1>{{ page.title | default(config.site_name, true)}}</h1>
+      {% endif %}
+      {{ page.content }}
+      {# block source %}
+        {% if page and page.meta and page.meta.source %}
+          <h2 id="__source">{{ lang.t("meta.source") }}</h2>
+          {% set repo = config.repo_url %}
+          {% if repo | last == "/" %}
+            {% set repo = repo[:-1] %}
+          {% endif %}
+          {% set path = page.meta.path | default([""]) %}
+          {% set file = page.meta.source %}
+          <a href="{{ [repo, path, file] | join('/') }}" title="{{ file }}" class="md-source-file">
+            {{ file }}
+          </a>
+        {% endif %}
+      {% endblock #}
+    {% endblock %}
+	</div>
+	
+</div>
+
+<script type="text/javascript" src="{{ 'assets/js/jquery-3.3.1.js' | url }}"></script>
+<script type="text/javascript" src="{{ 'assets/js/popper.js' | url }}"></script>
+<script type="text/javascript" src="{{ 'assets/js/bootstrap-4.js' | url }}"></script>
+</body>
+</html>
