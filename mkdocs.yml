@@ -7,16 +7,9 @@ google_analytics: ['UA-150926604-1', 'mkdocs.org']
 site_author: katharine.murphy@fetch.ai
 
 
-
-
 theme:
-  name: null
-  logo:
-    icon: 'assets/images/logo.png'
-  custom_dir: theme/custom_theme
-  favicon: '/assets/images/favicon.ico'
-  feature:
-    tabs: true  
+  name: windmill
+  custom_dir: theme/mkdocs-windmill-1.0.3/mkdocs_windmill
 
 
 nav:
@@ -197,15 +190,5 @@ nav:
 # Options
 extra:
   logo: 'assets/images/favicon.ico'
- # disqus: 'fetch-ai-developer-documentation'
+# disqus: 'fetch-ai-developer-documentation'
 
-
-markdown_extensions:
-  - pymdownx.superfences
-  - admonition
-
-extra_css:
-    - css/my-styles.css
-
-extra_javascript:
-    - js/menu.js
